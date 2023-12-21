@@ -1,6 +1,6 @@
-package Link.pokemon.repository;
+package Link.pokemon.repository.pokemon;
 
-import Link.pokemon.domain.Pokemon;
+import Link.pokemon.domain.pokemon.Pokemon;
 
 import java.util.Optional;
 

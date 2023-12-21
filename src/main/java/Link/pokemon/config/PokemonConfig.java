@@ -1,20 +1,29 @@
 package Link.pokemon.config;
 
-import Link.pokemon.repository.PokeRepository;
+import Link.pokemon.repository.pokemon.PokeRepository;
 
-import Link.pokemon.repository.PokemonRepository;
+import Link.pokemon.repository.pokemon.PokemonRepository;
+import Link.pokemon.repository.pokemon.SpringDataJpaPokeRepository;
+import Link.pokemon.service.pokemon.PokemonService;
 import jakarta.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class PokemonConfig {
-    private final EntityManager em;
+import javax.swing.*;
 
-    public PokemonConfig(EntityManager em) {
-        this.em = em;
+@Configuration
+@RequiredArgsConstructor
+public class PokemonConfig {
+    private final SpringDataJpaPokeRepository springDataJpaPokeRepository;
+
+    @Bean
+    public PokemonService pokemonService() {
+        return new PokemonService(pokemonRepository());
     }
 
-    public PokeRepository pokeRepository() {
-        return new PokemonRepository(em);
+    @Bean
+    public PokemonRepository pokemonRepository() {
+        return new PokemonRepository(springDataJpaPokeRepository);
     }
 }

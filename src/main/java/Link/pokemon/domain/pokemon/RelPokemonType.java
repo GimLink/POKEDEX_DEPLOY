@@ -1,4 +1,4 @@
-package Link.pokemon.domain;
+package Link.pokemon.domain.pokemon;
 
 import jakarta.persistence.*;
 import lombok.Data;
