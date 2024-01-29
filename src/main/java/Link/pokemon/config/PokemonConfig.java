@@ -15,7 +15,7 @@ import javax.swing.*;
 @Configuration
 @RequiredArgsConstructor
 public class PokemonConfig {
-    private final SpringDataJpaPokeRepository springDataJpaPokeRepository;
+    private final EntityManager em;
 
     @Bean
     public PokemonService pokemonService() {
@@ -24,6 +24,6 @@ public class PokemonConfig {
 
     @Bean
     public PokemonRepository pokemonRepository() {
-        return new PokemonRepository(springDataJpaPokeRepository);
+        return new PokemonRepository(em);
     }
 }
