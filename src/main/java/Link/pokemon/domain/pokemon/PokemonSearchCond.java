@@ -1,8 +1,9 @@
 package Link.pokemon.domain.pokemon;
 
-public class PokemonSearchCond {
+import lombok.Data;
 
-    private Long idPokemon;
+@Data
+public class PokemonSearchCond {
 
     private String pokemon;
     private Integer hp;
@@ -14,10 +15,8 @@ public class PokemonSearchCond {
 
     public PokemonSearchCond() {}
 
-    public PokemonSearchCond(Long idPokemon, String pokemon, Integer hp, Integer attack,
+    public PokemonSearchCond(Integer hp, Integer attack,
                              Integer defense, Integer specialAttack, Integer specialDefense, Integer speed) {
-        this.idPokemon = idPokemon;
-        this.pokemon = pokemon;
         this.hp = hp;
         this.attack = attack;
         this.defense = defense;
