@@ -5,8 +5,6 @@ import lombok.Data;
 @Data
 public class PokemonUpdateDto {
 
-    private Long idPokemon;
-
     private String pokemon;
     private Integer hp;
     private Integer attack;
@@ -17,9 +15,8 @@ public class PokemonUpdateDto {
 
     public PokemonUpdateDto() {}
 
-    public PokemonUpdateDto(Long idPokemon, String pokemon, Integer hp, Integer attack,
+    public PokemonUpdateDto(String pokemon, Integer hp, Integer attack,
                             Integer defense, Integer specialAttack, Integer specialDefense, Integer speed) {
-        this.idPokemon = idPokemon;
         this.pokemon = pokemon;
         this.hp = hp;
         this.attack = attack;
