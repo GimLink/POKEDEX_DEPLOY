@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>포켓몬 도감</h2>
+    </div>
+
+<!--
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='addForm.html'"
+                    th:onclick="|location.href='@{/items/add}'|"
+                    type="button">상품 등록
+            </button>
+        </div>
+    </div>
+-->
+    <form th:object="${pokemonSearch}" method="get" class="form-inline">
+    <div class="row">
+        <div class="col">
+            <input type="text" th:field="*{pokemon}" class="form-control" placeholder="포켓몬"/>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-secondary mb-2">검색</button>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+            <div class="col">
+                <button class="btn btn-primary float-end"
+                        onclick="location.href='addForm.html'"
+                        th:onclick="|location.href='@{/pokemons/add}'|"
+                        type="button">포켓몬 등록
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </form>
+
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>포켓몬</th>
+                <th>타입</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pokemon : ${pokemons}">
+                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.idPokemon}">도감번호</a>
+                </td>
+                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.pokemon}">포켓몬</a></td>
+                <td><a href="pokemon.html" th:href="@{/types/{IDType}(IDType=${type.IDType})}" th:text="${type.type}">타입</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>
