@@ -1,8 +1,12 @@
 package Link.pokemon.domain.pokemon;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -18,6 +22,14 @@ public class Pokemon {
     private Integer specialAttack;
     private Integer specialDefense;
     private Integer speed;
+
+    @ManyToMany
+    @JoinTable(
+            name = "rel_pokemon_type",
+            joinColumns = @JoinColumn(name = "ID_POKEMON"),
+            inverseJoinColumns = @JoinColumn(name = "ID_TYPE")
+    )
+    private List<Types> types = new ArrayList<Types>();
 
     public Pokemon() {
 

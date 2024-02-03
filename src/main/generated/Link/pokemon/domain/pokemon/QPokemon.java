@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -34,6 +35,8 @@ public class QPokemon extends EntityPathBase<Pokemon> {
     public final NumberPath<Integer> specialDefense = createNumber("specialDefense", Integer.class);
 
     public final NumberPath<Integer> speed = createNumber("speed", Integer.class);
+
+    public final ListPath<Types, QTypes> types = this.<Types, QTypes>createList("types", Types.class, QTypes.class, PathInits.DIRECT2);
 
     public QPokemon(String variable) {
         super(Pokemon.class, forVariable(variable));
