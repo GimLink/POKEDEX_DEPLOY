@@ -62,4 +62,16 @@ class PokemonRepositoryTest {
         Types type = typeRepository.findById(1L).get();
         log.info("type = {}", type.getType());
     }
+
+    @Test
+    void saveAndFind() {
+        Pokemon newPokemon = new Pokemon(152L, "aaa", 50, 50, 50, 50, 50, 50);
+        Pokemon bulbasar = repository.findById(1L).get();
+        Types type = bulbasar.getTypes().get(0);
+        log.info("type = {}", type);
+        newPokemon.getTypes().add(type);
+        repository.save(newPokemon);
+        Pokemon findPokemon = repository.findById(152L).get();
+        log.info("result = {}", findPokemon);
+    }
 }
