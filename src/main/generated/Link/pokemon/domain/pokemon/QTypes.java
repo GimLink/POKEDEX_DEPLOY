@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -20,6 +21,8 @@ public class QTypes extends EntityPathBase<Types> {
     public static final QTypes types = new QTypes("types");
 
     public final NumberPath<Integer> IDType = createNumber("IDType", Integer.class);
+
+    public final ListPath<Pokemon, QPokemon> pokemons = this.<Pokemon, QPokemon>createList("pokemons", Pokemon.class, QPokemon.class, PathInits.DIRECT2);
 
     public final StringPath type = createString("type");
 
