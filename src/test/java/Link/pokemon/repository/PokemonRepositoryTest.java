@@ -3,6 +3,7 @@ package Link.pokemon.repository;
 import Link.pokemon.domain.pokemon.Pokemon;
 import Link.pokemon.domain.pokemon.PokemonSearchCond;
 import Link.pokemon.domain.pokemon.Types;
+import Link.pokemon.repository.Types.TypeRepository;
 import Link.pokemon.repository.pokemon.PokemonQueryRepository;
 import Link.pokemon.repository.pokemon.PokemonRepository;
 import Link.pokemon.repository.pokemon.PokemonRepositoryV2;
@@ -27,6 +28,8 @@ class PokemonRepositoryTest {
     PokemonRepositoryV2 repository;
     @Autowired
     PokemonQueryRepository query;
+    @Autowired
+    TypeRepository typeRepository;
 
     @Test
     void findById() {
@@ -52,5 +55,11 @@ class PokemonRepositoryTest {
         List<Types> types = pokemon.getTypes();
         log.info("result = {}", types);
 
+    }
+
+    @Test
+    void findPokemonByType() {
+        Types type = typeRepository.findById(1L).get();
+        log.info("type = {}", type.getType());
     }
 }
