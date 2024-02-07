@@ -61,7 +61,13 @@
                 <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.idPokemon}">도감번호</a>
                 </td>
                 <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.pokemon}">포켓몬</a></td>
-                <td><a href="pokemon.html" th:href="@{/types/{IDType}(IDType=${type.IDType})}" th:text="${type.type}">타입</a></td>
+                <td>
+                    <th:block th:each="type, iterStat : ${pokemon.types}">
+                        <a href="pokemon.html" th:text="${type.getType()}"></a>
+                        <!-- Add a space if it's not the last element in the list -->
+                        <span th:if="${!iterStat.last}"> </span>
+                    </th:block>
+                </td>
             </tr>
             </tbody>
         </table>
