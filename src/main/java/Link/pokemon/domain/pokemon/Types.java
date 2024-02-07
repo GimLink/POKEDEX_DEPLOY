@@ -13,8 +13,8 @@ import java.util.Set;
 @ToString(exclude = "pokemons")
 public class Types {
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer IDType;
+    @Id
+    private Integer idType;
 
     private String type;
 

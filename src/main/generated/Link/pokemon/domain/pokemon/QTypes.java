@@ -20,7 +20,7 @@ public class QTypes extends EntityPathBase<Types> {
 
     public static final QTypes types = new QTypes("types");
 
-    public final NumberPath<Integer> IDType = createNumber("IDType", Integer.class);
+    public final NumberPath<Integer> idType = createNumber("idType", Integer.class);
 
     public final ListPath<Pokemon, QPokemon> pokemons = this.<Pokemon, QPokemon>createList("pokemons", Pokemon.class, QPokemon.class, PathInits.DIRECT2);
 
