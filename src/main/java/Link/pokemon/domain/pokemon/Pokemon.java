@@ -31,6 +31,11 @@ public class Pokemon {
     )
     private List<Types> types = new ArrayList<Types>();
 
+    public void addTypes(Types type) {
+        this.types.add(type);
+        type.getPokemons().add(this);
+    }
+
     public Pokemon() {
 
     }
