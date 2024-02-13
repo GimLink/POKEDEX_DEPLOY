@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" style="max-width: 800px">
+    <div class="py-5 text-center">
+        <h2>포켓몬</h2>
+    </div>
+
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>포켓몬</th>
+                <th>타입</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pokemon : ${type.getPokemons()}">
+                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.idPokemon}">도감번호</a>
+                </td>
+                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.pokemon}">포켓몬</a></td>
+                <td th:text="${type.getType()}">타입</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>
