@@ -6,7 +6,7 @@
         href="css/bootstrap.min.css" rel="stylesheet">
   <style>
     .container {
-      max-width: 560px;
+      max-width: 800px;
     }
   </style>
 </head>
@@ -18,46 +18,103 @@
 
   <!-- 추가-->
   <h2 th:if="${param.status}" th:text="'저장 완료'"></h2>
+
+  <hr class="my-4">
   <div>
-    <label for="idPokemon">No.</label>
-    <input type="text" id="idPokemon" name="idPokemon" class="form-control"
-           value="1" th:value="${pokemon.idPokemon}" readonly>
+    <table class="table">
+      <thead>
+      <tr>
+        <th class="text-center" colspan="9">기본정보</th>
+      </tr>
+      <tr>
+        <th class="text-center">도감번호</th>
+        <th class="text-center">이름</th>
+        <th class="text-center">타입</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="text-center"><a th:text="${pokemon.idPokemon}">No.</a></td>
+        <td class="text-center"><a th:text="${pokemon.pokemon}">포켓몬</a></td>
+        <td class="text-center">
+          <th:block th:each="type, iterStat : ${pokemon.types}">
+            <a th:text="${type.getType()}"></a>
+            <!-- Add a space if it's not the last element in the list -->
+            <span th:if="${!iterStat.last}"> </span>
+          </th:block>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+      <tr>
+        <th class="text-center" colspan="9">종족치</th>
+      </tr>
+      <tr>
+        <th class="text-center">포켓몬</th>
+        <th class="text-center">HP</th>
+        <th class="text-center">공격</th>
+        <th class="text-center">방어</th>
+        <th class="text-center">특수공격</th>
+        <th class="text-center">특수방어</th>
+        <th class="text-center">스피드</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="text-center"><a th:text="${pokemon.pokemon}">포켓몬</a></td>
+        <td class="text-center"><a th:text="${pokemon.hp}">HP</a></td>
+        <td class="text-center"><a th:text="${pokemon.attack}">공격</a></td>
+        <td class="text-center"><a th:text="${pokemon.defense}">방어</a></td>
+        <td class="text-center"><a th:text="${pokemon.specialAttack}">특수공격</a></td>
+        <td class="text-center"><a th:text="${pokemon.specialDefense}">특수방어</a></td>
+        <td class="text-center"><a th:text="${pokemon.speed}">스피드</a></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-  <div>
-    <label for="pokemonName">포켓몬</label>
-    <input type="text" id="pokemonName" name="pokemonName" class="form-control"
-           value="상품A" th:value="${pokemon.pokemon}" readonly>
-  </div>
-  <div>
-    <label for="hp">hp</label>
-    <input type="text" id="hp" name="hp" class="form-control"
-           value="10000" th:value="${pokemon.hp}" readonly>
-  </div>
-  <div>
-    <label for="attack">attack</label>
-    <input type="text" id="attack" name="attack" class="form-control"
-           value="10" th:value="${pokemon.attack}" readonly>
-  </div>
-  <div>
-    <label for="defense">defense</label>
-    <input type="text" id="defense" name="defense" class="form-control"
-           value="10" th:value="${pokemon.defense}" readonly>
-  </div>
-  <div>
-    <label for="specialAttack">SpecialAttack</label>
-    <input type="text" id="specialAttack" name="specialAttack" class="form-control"
-           value="10" th:value="${pokemon.specialAttack}" readonly>
-  </div>
-  <div>
-    <label for="specialDefense">SpevialDefense</label>
-    <input type="text" id="specialDefense" name="specialDefense" class="form-control"
-           value="10" th:value="${pokemon.specialDefense}" readonly>
-  </div>
-  <div>
-    <label for="speed">Speed</label>
-    <input type="text" id="speed" name="speed" class="form-control"
-           value="10" th:value="${pokemon.speed}" readonly>
-  </div>
+
+  <!--  <div>-->
+<!--    <label for="idPokemon">No.</label>-->
+<!--    <input type="text" id="idPokemon" name="idPokemon" class="form-control"-->
+<!--           value="1" th:value="${pokemon.idPokemon}" readonly>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="pokemonName">포켓몬</label>-->
+<!--    <input type="text" id="pokemonName" name="pokemonName" class="form-control"-->
+<!--           value="상품A" th:value="${pokemon.pokemon}" readonly>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="hp">HP</label>-->
+<!--    <input type="text" id="hp" name="hp" class="form-control"-->
+<!--           value="10000" th:value="${pokemon.hp}" readonly>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="attack">Attack</label>-->
+<!--    <input type="text" id="attack" name="attack" class="form-control"-->
+<!--           value="10" th:value="${pokemon.attack}" readonly>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="defense">Defense</label>-->
+<!--    <input type="text" id="defense" name="defense" class="form-control"-->
+<!--           value="10" th:value="${pokemon.defense}" readonly>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="specialAttack">SpecialAttack</label>-->
+<!--    <input type="text" id="specialAttack" name="specialAttack" class="form-control"-->
+<!--           value="10" th:value="${pokemon.specialAttack}" readonly>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="specialDefense">SpecialDefense</label>-->
+<!--    <input type="text" id="specialDefense" name="specialDefense" class="form-control"-->
+<!--           value="10" th:value="${pokemon.specialDefense}" readonly>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="speed">Speed</label>-->
+<!--    <input type="text" id="speed" name="speed" class="form-control"-->
+<!--           value="10" th:value="${pokemon.speed}" readonly>-->
+<!--  </div>-->
   <hr class="my-4">
   <div class="row">
     <div class="col">
