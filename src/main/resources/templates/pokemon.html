@@ -38,7 +38,7 @@
         <td class="text-center"><a th:text="${pokemon.pokemon}">포켓몬</a></td>
         <td class="text-center">
           <th:block th:each="type, iterStat : ${pokemon.types}">
-            <a th:text="${type.getType()}"></a>
+            <a href="typePokemons.html" th:href="@{/pokemons/type/{type}(type=${type.getType()})}" th:text="${type.getType()}"></a>
             <!-- Add a space if it's not the last element in the list -->
             <span th:if="${!iterStat.last}"> </span>
           </th:block>
