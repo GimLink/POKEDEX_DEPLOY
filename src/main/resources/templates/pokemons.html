@@ -12,21 +12,10 @@
         <h2>포켓몬 도감</h2>
     </div>
 
-<!--
-    <div class="row">
-        <div class="col">
-            <button class="btn btn-primary float-end"
-                    onclick="location.href='addForm.html'"
-                    th:onclick="|location.href='@{/items/add}'|"
-                    type="button">상품 등록
-            </button>
-        </div>
-    </div>
--->
     <form th:object="${pokemonSearch}" method="get" class="form-inline">
     <div class="row">
         <div class="col">
-            <input type="text" th:field="*{pokemon}" class="form-control" placeholder="포켓몬"/>
+            <input type="text" th:field="*{pokemon}" class="form-control" placeholder="검색"/>
         </div>
         <div class="col">
             <button type="submit" class="btn btn-secondary mb-2">검색</button>
