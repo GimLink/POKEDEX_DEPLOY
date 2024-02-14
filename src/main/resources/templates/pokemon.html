@@ -75,53 +75,8 @@
     </table>
   </div>
 
-  <!--  <div>-->
-<!--    <label for="idPokemon">No.</label>-->
-<!--    <input type="text" id="idPokemon" name="idPokemon" class="form-control"-->
-<!--           value="1" th:value="${pokemon.idPokemon}" readonly>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="pokemonName">포켓몬</label>-->
-<!--    <input type="text" id="pokemonName" name="pokemonName" class="form-control"-->
-<!--           value="상품A" th:value="${pokemon.pokemon}" readonly>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="hp">HP</label>-->
-<!--    <input type="text" id="hp" name="hp" class="form-control"-->
-<!--           value="10000" th:value="${pokemon.hp}" readonly>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="attack">Attack</label>-->
-<!--    <input type="text" id="attack" name="attack" class="form-control"-->
-<!--           value="10" th:value="${pokemon.attack}" readonly>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="defense">Defense</label>-->
-<!--    <input type="text" id="defense" name="defense" class="form-control"-->
-<!--           value="10" th:value="${pokemon.defense}" readonly>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="specialAttack">SpecialAttack</label>-->
-<!--    <input type="text" id="specialAttack" name="specialAttack" class="form-control"-->
-<!--           value="10" th:value="${pokemon.specialAttack}" readonly>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="specialDefense">SpecialDefense</label>-->
-<!--    <input type="text" id="specialDefense" name="specialDefense" class="form-control"-->
-<!--           value="10" th:value="${pokemon.specialDefense}" readonly>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="speed">Speed</label>-->
-<!--    <input type="text" id="speed" name="speed" class="form-control"-->
-<!--           value="10" th:value="${pokemon.speed}" readonly>-->
-<!--  </div>-->
   <hr class="my-4">
   <div class="row">
-    <div class="col">
-      <button class="w-100 btn btn-primary btn-lg"
-              onclick="location.href='editForm.html'"
-              th:onclick="|location.href='@{/pokemons/{idPokemon}/edit(idPokemon=${pokemon.idPokemon})}'|" type="button">도감 수정</button>
-    </div>
     <div class="col">
       <button class="w-100 btn btn-secondary btn-lg"
               onclick="location.href='pokemons.html'"
