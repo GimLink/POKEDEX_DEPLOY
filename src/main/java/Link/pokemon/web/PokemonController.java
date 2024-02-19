@@ -7,22 +7,22 @@ import Link.pokemon.service.pokemon.PokemonServiceV2;
 import Link.pokemon.service.type.TypeService;
 import Link.pokemon.service.type.TypeServiceInter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/pokemons")
 @RequiredArgsConstructor
 public class PokemonController {
 
     private final PokemonServiceV2 pokemonService;
-    private final TypeService typeService;
+    private final TypeServiceInter typeService;
 
     @GetMapping
     public String pokemons(@ModelAttribute("pokemonSearch") PokemonSearchCond pokemonSearch, Model model) {
@@ -41,5 +41,26 @@ public class PokemonController {
         Types type = typeService.findByType(typeName).get();
         model.addAttribute("type", type);
         return "typePokemons";
+    }
+
+    @GetMapping("/add")
+    public String addForm() {return "addForm";}
+
+    @PostMapping("/add")
+    public String addPokemon(Pokemon pokemon,
+                             @RequestParam(name = "typeIds", required = false) Long[] typeIds,
+                             RedirectAttributes redirect) {
+        if (typeIds != null) {
+            for (Long typeId : typeIds) {
+                Types existingType = typeService.findById(typeId).get();
+                if (existingType != null) {
+                    pokemon.addTypes(existingType);
+                }
+            }
+        }
+        Pokemon newPokemon = pokemonService.save(pokemon);
+        redirect.addAttribute("idPokemon", newPokemon.getIdPokemon());
+        redirect.addAttribute("status", true);
+        return "redirect:/pokemons/{idPokemon}";
     }
 }
