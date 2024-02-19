@@ -46,20 +46,48 @@ public class PokemonController {
     @GetMapping("/add")
     public String addForm() {return "addForm";}
 
-    @PostMapping("/add")
-    public String addPokemon(Pokemon pokemon,
+//    @PostMapping("/add")
+    public String addPokemon(@RequestParam Long idPokemon, @RequestParam String pokemon, @RequestParam Integer hp,
+                             @RequestParam Integer attack, @RequestParam Integer defense, @RequestParam Integer specialAttack,
+                             @RequestParam Integer specialDefense, @RequestParam Integer speed,
                              @RequestParam(name = "typeIds", required = false) Long[] typeIds,
+                             Model model,
                              RedirectAttributes redirect) {
+        Pokemon addPokemon = new Pokemon(idPokemon, pokemon, hp, attack, defense, specialAttack, specialDefense, speed);
+
         if (typeIds != null) {
             for (Long typeId : typeIds) {
                 Types existingType = typeService.findById(typeId).get();
                 if (existingType != null) {
-                    pokemon.addTypes(existingType);
+                    addPokemon.addTypes(existingType);
                 }
             }
         }
-        Pokemon newPokemon = pokemonService.save(pokemon);
-        redirect.addAttribute("idPokemon", newPokemon.getIdPokemon());
+        pokemonService.save(addPokemon);
+
+        model.addAttribute("pokemon", addPokemon);
+        redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
+        redirect.addAttribute("status", true);
+        return "redirect:/pokemons/{idPokemon}";
+    }
+
+    @PostMapping("/add")
+//    ModelAttribute 사용하면 Pokemon객체가 자동으로 pokemon으로 바인딩 돼서 포켓몬 이름을 필드인 pokemon과 충돌 typemismatch 에러 발생
+    public String addPokemonV2(@ModelAttribute(name = "newPokemon") Pokemon newPokemon,
+                             @RequestParam(name = "typeIds", required = false) Long[] typeIds,
+                             RedirectAttributes redirect) {
+
+        if (typeIds != null) {
+            for (Long typeId : typeIds) {
+                Types existingType = typeService.findById(typeId).get();
+                if (existingType != null) {
+                    newPokemon.addTypes(existingType);
+                }
+            }
+        }
+        Pokemon addPokemon = pokemonService.save(newPokemon);
+
+        redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
         redirect.addAttribute("status", true);
         return "redirect:/pokemons/{idPokemon}";
     }
