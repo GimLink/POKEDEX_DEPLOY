@@ -4,7 +4,6 @@ import Link.pokemon.domain.pokemon.Pokemon;
 import Link.pokemon.domain.pokemon.PokemonSearchCond;
 import Link.pokemon.domain.pokemon.PokemonUpdateDto;
 import Link.pokemon.repository.pokemon.PokemonQueryRepository;
-import Link.pokemon.repository.pokemon.PokemonRepository;
 import Link.pokemon.repository.pokemon.PokemonRepositoryV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
