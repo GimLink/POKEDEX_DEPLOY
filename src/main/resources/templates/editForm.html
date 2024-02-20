@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>포켓몬 수정 폼</h2>
+    </div>
+
+    <form action="pokemon.html" th:action method="post">
+        <div>
+            <label for="idPokemon">도감번호</label>
+            <input type="text" id="idPokemon" name="idPokemon" class="form-control"
+                   th:value = "${pokemon.idPokemon}" placeholder="도감번호를 입력하세요">
+        </div>
+        <div>
+            <label for="pokemon">포켓몬</label>
+            <input type="text" id="pokemon" name="pokemon" class="form-control"
+                   th:value = "${pokemon.pokemon}" placeholder="이름을 입력하세요">
+        </div>
+        <div>
+            <label for="hp">HP</label>
+            <input type="text" id="hp" name="hp" class="form-control"
+                   th:value = "${pokemon.hp}" placeholder="HP를 입력하세요">
+        </div>
+        <div>
+            <label for="attack">공격</label>
+            <input type="text" id="attack" name="attack" class="form-control"
+                   th:value = "${pokemon.attack}" placeholder="공격력을 입력하세요">
+        </div>
+        <div>
+            <label for="defense">방어</label>
+            <input type="text" id="defense" name="defense" class="form-control"
+                   th:value = "${pokemon.defense}" placeholder="방어력을 입력하세요">
+        </div>
+        <div>
+            <label for="specialAttack">특수공격</label>
+            <input type="text" id="specialAttack" name="specialAttack" class="form-control"
+                   th:value = "${pokemon.specialAttack}" placeholder="특수공격력을 입력하세요">
+        </div>
+        <div>
+            <label for="specialDefense">특수방어</label>
+            <input type="text" id="specialDefense" name="specialDefense" class="form-control"
+                   th:value = "${pokemon.specialDefense}" placeholder="특수방어력을 입력하세요">
+        </div>
+        <div>
+            <label for="speed">스피드</label>
+            <input type="text" id="speed" name="speed" class="form-control"
+                   th:value = "${pokemon.speed}" placeholder="스피드를 입력하세요">
+        </div>
+        <div>
+            <label>타입 선택</label>
+            <!--            <select id="typeIds" name="typeIds" class="form-control" multiple>-->
+            <br>
+            <input type="checkbox" name="typeIds" value="0"> 없음
+            <input type="checkbox" name="typeIds" value="1"> 노말
+            <input type="checkbox" name="typeIds" value="2"> 불
+            <input type="checkbox" name="typeIds" value="3"> 물
+            <input type="checkbox" name="typeIds" value="4"> 풀
+            <input type="checkbox" name="typeIds" value="5"> 전기
+            <input type="checkbox" name="typeIds" value="6"> 얼음
+            <input type="checkbox" name="typeIds" value="7"> 격투
+            <input type="checkbox" name="typeIds" value="8"> 독
+            <br>
+            <input type="checkbox" name="typeIds" value="9"> 땅
+            <input type="checkbox" name="typeIds" value="10"> 비행
+            <input type="checkbox" name="typeIds" value="11"> 에스퍼
+            <input type="checkbox" name="typeIds" value="12"> 벌레
+            <input type="checkbox" name="typeIds" value="13"> 바위
+            <input type="checkbox" name="typeIds" value="14"> 고스트
+            <input type="checkbox" name="typeIds" value="15"> 악
+            <input type="checkbox" name="typeIds" value="16"> 용
+            <input type="checkbox" name="typeIds" value="17"> 강철
+            <!--            </select>-->
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">수정</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        onclick="location.href='pokemons.html'"
+                        th:onclick="|location.href='@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}'|"
+                        type="button">취소</button>
+            </div>
+        </div>
+
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>
