@@ -31,6 +31,12 @@ public class Pokemon {
     private List<Types> types = new ArrayList<Types>();
 
     public void addTypes(Types type) {
+        if (this.types != null){
+            for (Types existType : this.types) {
+                existType.getPokemons().remove(this);
+            }
+            this.types.clear();
+        }
         this.types.add(type);
         type.getPokemons().add(this);
     }
