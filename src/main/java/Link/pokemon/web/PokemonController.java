@@ -2,6 +2,7 @@ package Link.pokemon.web;
 
 import Link.pokemon.domain.pokemon.Pokemon;
 import Link.pokemon.domain.pokemon.PokemonSearchCond;
+import Link.pokemon.domain.pokemon.PokemonUpdateDto;
 import Link.pokemon.domain.pokemon.Types;
 import Link.pokemon.service.pokemon.PokemonServiceV2;
 import Link.pokemon.service.type.TypeService;
@@ -89,6 +90,30 @@ public class PokemonController {
 
         redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
         redirect.addAttribute("status", true);
+        return "redirect:/pokemons/{idPokemon}";
+    }
+
+    @GetMapping("/{idPokemon}/edit")
+    public String editForm(@PathVariable Long idPokemon, Model model) {
+        Pokemon pokemon = pokemonService.findById(idPokemon).get();
+        model.addAttribute("pokemon", pokemon);
+        return "/editForm";
+    }
+
+    @PostMapping("/{idPokemon}/edit")
+    public String edit(@PathVariable Long idPokemon,
+                       @RequestParam(name = "typeIds", required = false) Long[] typeIds,
+                       @ModelAttribute PokemonUpdateDto update) {
+        Pokemon updatePokemon = pokemonService.findById(idPokemon).get();
+        if (typeIds != null) {
+            for (Long typeId : typeIds) {
+                Types existingType = typeService.findById(typeId).get();
+                if (existingType != null) {
+                    updatePokemon.addTypes(existingType);
+                }
+            }
+        }
+        pokemonService.update(idPokemon, update);
         return "redirect:/pokemons/{idPokemon}";
     }
 }
