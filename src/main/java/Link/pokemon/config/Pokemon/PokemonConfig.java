@@ -1,4 +1,4 @@
-package Link.pokemon.config;
+package Link.pokemon.config.Pokemon;
 
 import Link.pokemon.repository.pokemon.PokeRepository;
 
