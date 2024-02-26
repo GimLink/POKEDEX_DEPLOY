@@ -1,8 +1,10 @@
 package Link.pokemon.domain.pokemon;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +14,23 @@ import java.util.List;
 public class Pokemon {
 
     @Id
+    @Range(min = 0, max = 1000)
     private Long idPokemon;
 
+    @NotBlank
     private String pokemon;
+
+    @NotNull
     private Integer hp;
+    @NotNull
     private Integer attack;
+    @NotNull
     private Integer defense;
+    @NotNull
     private Integer specialAttack;
+    @NotNull
     private Integer specialDefense;
+    @NotNull
     private Integer speed;
 
     @ManyToMany
