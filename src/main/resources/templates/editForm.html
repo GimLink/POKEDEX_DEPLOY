@@ -18,70 +18,70 @@
         <h2>포켓몬 수정 폼</h2>
     </div>
 
-    <form action="pokemon.html" th:action method="post">
+    <form action="pokemon.html" th:action th:object="${pokemon}" method="post">
         <div>
             <label for="idPokemon">도감번호</label>
-            <input type="text" id="idPokemon" name="idPokemon" class="form-control"
-                   th:value = "${pokemon.idPokemon}" placeholder="도감번호를 입력하세요">
+            <input type="text" id="idPokemon"  class="form-control"
+                   th:field="*{idPokemon}" placeholder="도감번호를 입력하세요">
         </div>
         <div>
             <label for="pokemon">포켓몬</label>
-            <input type="text" id="pokemon" name="pokemon" class="form-control"
-                   th:value = "${pokemon.pokemon}" placeholder="이름을 입력하세요">
+            <input type="text" id="pokemon" class="form-control"
+                   th:field="*{pokemon}" placeholder="이름을 입력하세요">
         </div>
         <div>
             <label for="hp">HP</label>
-            <input type="text" id="hp" name="hp" class="form-control"
-                   th:value = "${pokemon.hp}" placeholder="HP를 입력하세요">
+            <input type="text" id="hp" class="form-control"
+                   th:field="*{hp}" placeholder="HP를 입력하세요">
         </div>
         <div>
             <label for="attack">공격</label>
-            <input type="text" id="attack" name="attack" class="form-control"
-                   th:value = "${pokemon.attack}" placeholder="공격력을 입력하세요">
+            <input type="text" id="attack" class="form-control"
+                   th:field="*{attack}" placeholder="공격력을 입력하세요">
         </div>
         <div>
             <label for="defense">방어</label>
-            <input type="text" id="defense" name="defense" class="form-control"
-                   th:value = "${pokemon.defense}" placeholder="방어력을 입력하세요">
+            <input type="text" id="defense" class="form-control"
+                   th:field="*{defense}" placeholder="방어력을 입력하세요">
         </div>
         <div>
             <label for="specialAttack">특수공격</label>
-            <input type="text" id="specialAttack" name="specialAttack" class="form-control"
-                   th:value = "${pokemon.specialAttack}" placeholder="특수공격력을 입력하세요">
+            <input type="text" id="specialAttack" class="form-control"
+                   th:field="*{specialAttack}" placeholder="특수공격력을 입력하세요">
         </div>
         <div>
             <label for="specialDefense">특수방어</label>
-            <input type="text" id="specialDefense" name="specialDefense" class="form-control"
-                   th:value = "${pokemon.specialDefense}" placeholder="특수방어력을 입력하세요">
+            <input type="text" id="specialDefense" class="form-control"
+                   th:field="*{specialDefense}" placeholder="특수방어력을 입력하세요">
         </div>
         <div>
             <label for="speed">스피드</label>
-            <input type="text" id="speed" name="speed" class="form-control"
-                   th:value = "${pokemon.speed}" placeholder="스피드를 입력하세요">
+            <input type="text" id="speed" class="form-control"
+                   th:field="*{speed}" placeholder="스피드를 입력하세요">
         </div>
         <div>
             <label>타입 선택</label>
             <!--            <select id="typeIds" name="typeIds" class="form-control" multiple>-->
             <br>
-            <input type="checkbox" name="typeIds" value="0"> 없음
-            <input type="checkbox" name="typeIds" value="1"> 노말
-            <input type="checkbox" name="typeIds" value="2"> 불
-            <input type="checkbox" name="typeIds" value="3"> 물
-            <input type="checkbox" name="typeIds" value="4"> 풀
-            <input type="checkbox" name="typeIds" value="5"> 전기
-            <input type="checkbox" name="typeIds" value="6"> 얼음
-            <input type="checkbox" name="typeIds" value="7"> 격투
-            <input type="checkbox" name="typeIds" value="8"> 독
+            <input type="checkbox" name="typeIds" value="0" th:checked="${type1.getIdType()==0 or type2.getIdType()==0}"> 없음
+            <input type="checkbox" name="typeIds" value="1" th:checked="${type1.getIdType()==1 or type2.getIdType()==1}"> 노말
+            <input type="checkbox" name="typeIds" value="2" th:checked="${type1.getIdType()==2 or type2.getIdType()==2}"> 불
+            <input type="checkbox" name="typeIds" value="3" th:checked="${type1.getIdType()==3 or type2.getIdType()==3}"> 물
+            <input type="checkbox" name="typeIds" value="4" th:checked="${type1.getIdType()==4 or type2.getIdType()==4}"> 풀
+            <input type="checkbox" name="typeIds" value="5" th:checked="${type1.getIdType()==5 or type2.getIdType()==5}"> 전기
+            <input type="checkbox" name="typeIds" value="6" th:checked="${type1.getIdType()==6 or type2.getIdType()==6}"> 얼음
+            <input type="checkbox" name="typeIds" value="7" th:checked="${type1.getIdType()==7 or type2.getIdType()==7}"> 격투
+            <input type="checkbox" name="typeIds" value="8" th:checked="${type1.getIdType()==8 or type2.getIdType()==8}"> 독
             <br>
-            <input type="checkbox" name="typeIds" value="9"> 땅
-            <input type="checkbox" name="typeIds" value="10"> 비행
-            <input type="checkbox" name="typeIds" value="11"> 에스퍼
-            <input type="checkbox" name="typeIds" value="12"> 벌레
-            <input type="checkbox" name="typeIds" value="13"> 바위
-            <input type="checkbox" name="typeIds" value="14"> 고스트
-            <input type="checkbox" name="typeIds" value="15"> 악
-            <input type="checkbox" name="typeIds" value="16"> 용
-            <input type="checkbox" name="typeIds" value="17"> 강철
+            <input type="checkbox" name="typeIds" value="9" th:checked="${type1.getIdType()==9 or type2.getIdType()==9}"> 땅
+            <input type="checkbox" name="typeIds" value="10" th:checked="${type1.getIdType()==10 or type2.getIdType()==10}"> 비행
+            <input type="checkbox" name="typeIds" value="11" th:checked="${type1.getIdType()==11 or type2.getIdType()==11}"> 에스퍼
+            <input type="checkbox" name="typeIds" value="12" th:checked="${type1.getIdType()==12 or type2.getIdType()==12}"> 벌레
+            <input type="checkbox" name="typeIds" value="13" th:checked="${type1.getIdType()==13 or type2.getIdType()==13}"> 바위
+            <input type="checkbox" name="typeIds" value="14" th:checked="${type1.getIdType()==14 or type2.getIdType()==14}"> 고스트
+            <input type="checkbox" name="typeIds" value="15" th:checked="${type1.getIdType()==15 or type2.getIdType()==15}"> 악
+            <input type="checkbox" name="typeIds" value="16" th:checked="${type1.getIdType()==16 or type2.getIdType()==16}"> 용
+            <input type="checkbox" name="typeIds" value="17" th:checked="${type1.getIdType()==17 or type2.getIdType()==17}"> 강철
             <!--            </select>-->
         </div>
 
