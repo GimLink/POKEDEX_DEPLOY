@@ -1,7 +1,7 @@
 package Link.pokemon.config.Member;
 
 import Link.pokemon.repository.member.MemberRepositoryV2;
-import Link.pokemon.service.MemberService.MemberService;
+import Link.pokemon.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
