@@ -1,4 +1,4 @@
-package Link.pokemon.service.MemberService;
+package Link.pokemon.service.member;
 
 import Link.pokemon.domain.member.Member;
 import Link.pokemon.repository.member.MemberRepositoryV2;
@@ -22,4 +22,10 @@ public class MemberService implements MemberServiceInterface{
     public Optional<Member> findByLoginId(String loginId) {
         return repository.findByLoginId(loginId);
     }
+
+    @Override
+    public Member save(Member member) {
+        return repository.save(member);
+    }
+
 }
