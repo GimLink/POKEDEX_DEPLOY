@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,7 +46,7 @@ public class PokemonController {
     }
 
     @GetMapping("/add")
-    public String addForm() {return "addForm";}
+    public String addForm(@ModelAttribute Pokemon pokemon) {return "addForm";}
 
 //    @PostMapping("/add")
     public String addPokemon(@RequestParam Long idPokemon, @RequestParam String pokemon, @RequestParam Integer hp,
@@ -74,7 +75,7 @@ public class PokemonController {
 
     @PostMapping("/add")
 //    ModelAttribute 사용하면 Pokemon객체가 자동으로 pokemon으로 바인딩 돼서 포켓몬 이름을 필드인 pokemon과 충돌 typemismatch 에러 발생
-    public String addPokemonV2(@ModelAttribute(name = "newPokemon") Pokemon newPokemon,
+    public String addPokemonV2(@Validated @ModelAttribute(name = "newPokemon") Pokemon newPokemon,
                              @RequestParam(name = "typeIds", required = false) Long[] typeIds,
                              RedirectAttributes redirect) {
 
@@ -97,6 +98,15 @@ public class PokemonController {
     public String editForm(@PathVariable Long idPokemon, Model model) {
         Pokemon pokemon = pokemonService.findById(idPokemon).get();
         model.addAttribute("pokemon", pokemon);
+        int i = 1;
+        for (Types type : pokemon.getTypes()) {
+            if (i == 1) {
+                model.addAttribute("type1", type);
+            } else {
+                model.addAttribute("type2", type);
+            }
+            i++;
+        }
         return "/editForm";
     }
 
