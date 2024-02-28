@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -65,7 +66,13 @@ public class PokemonController {
                 }
             }
         }
-        pokemonService.save(addPokemon);
+
+        try {
+            pokemonService.save(addPokemon);
+        } catch (Exception e) {
+            log.info("error = {}", e);
+        }
+
 
         model.addAttribute("pokemon", addPokemon);
         redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
@@ -76,6 +83,7 @@ public class PokemonController {
     @PostMapping("/add")
 //    ModelAttribute 사용하면 Pokemon객체가 자동으로 pokemon으로 바인딩 돼서 포켓몬 이름을 필드인 pokemon과 충돌 typemismatch 에러 발생
     public String addPokemonV2(@Validated @ModelAttribute(name = "newPokemon") Pokemon newPokemon,
+                             BindingResult bindingResult,
                              @RequestParam(name = "typeIds", required = false) Long[] typeIds,
                              RedirectAttributes redirect) {
 
@@ -91,6 +99,12 @@ public class PokemonController {
 
         redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
         redirect.addAttribute("status", true);
+
+        if (bindingResult.hasErrors()) {
+            log.info("error = {}", bindingResult);
+            return "addForm";
+        }
+
         return "redirect:/pokemons/{idPokemon}";
     }
 
@@ -99,21 +113,29 @@ public class PokemonController {
         Pokemon pokemon = pokemonService.findById(idPokemon).get();
         model.addAttribute("pokemon", pokemon);
         int i = 1;
-        for (Types type : pokemon.getTypes()) {
-            if (i == 1) {
-                model.addAttribute("type1", type);
-            } else {
-                model.addAttribute("type2", type);
+
+        if (pokemon.getTypes().size() >= 2) {
+            for (Types type : pokemon.getTypes()) {
+                if (i == 1) {
+                    model.addAttribute("type1", type);
+                } else {
+                    model.addAttribute("type2", type);
+                }
+                i++;
             }
-            i++;
+        } else {
+            Types nullType = new Types();
+            model.addAttribute("type1", pokemon.getTypes().get(0));
+            model.addAttribute("type2", nullType);
         }
+
         return "/editForm";
     }
 
     @PostMapping("/{idPokemon}/edit")
-    public String edit(@PathVariable Long idPokemon,
+    public String edit(@Validated @PathVariable Long idPokemon,
                        @RequestParam(name = "typeIds", required = false) Long[] typeIds,
-                       @ModelAttribute PokemonUpdateDto update) {
+                       @ModelAttribute PokemonUpdateDto update, BindingResult bindingResult) {
         Pokemon updatePokemon = pokemonService.findById(idPokemon).get();
         if (typeIds != null) {
             for (Long typeId : typeIds) {
@@ -124,6 +146,11 @@ public class PokemonController {
             }
         }
         pokemonService.update(idPokemon, update);
+
+        if (bindingResult.hasErrors()) {
+            return "/editForm";
+        }
+
         return "redirect:/pokemons/{idPokemon}";
     }
 }

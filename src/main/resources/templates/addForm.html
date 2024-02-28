@@ -20,41 +20,47 @@
 
     <form action="pokemon.html" th:action th:object="${pokemon}" method="post">
 
-        <div th:if="${#fields.hasGlobalErrors()}">
-            <p class="field-error", th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
-        </div>
+<!--        <div th:if="${#fields.hasGlobalErrors()}">-->
+<!--            <p class="field-error", th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>-->
+<!--        </div>-->
 
         <div>
             <label for="idPokemon">도감번호</label>
-            <input type="text" id="idPokemon" name="idPokemon" class="form-control" placeholder="도감번호를 입력하세요">
+            <input type="text" id="idPokemon" th:field="${newPokemon.idPokemon}" class="form-control" placeholder="도감번호를 입력하세요">
+            <div class="field-error" th:errors="${newPokemon.idPokemon}">
+                도감번호 오류
+            </div>
         </div>
         <div>
             <label for="pokemon">포켓몬</label>
-            <input type="text" id="pokemon" th:field="*{pokemon}" th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
+            <input type="text" id="pokemon" th:field="${newPokemon.pokemon}" th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
+            <div class="field-error" th:errors="${newPokemon.pokemon}">
+                포켓몬 이름 오류
+            </div>
         </div>
         <div>
             <label for="hp">HP</label>
-            <input type="text" id="hp" th:field="*{hp}" class="form-control" placeholder="HP를 입력하세요">
+            <input type="text" id="hp" th:field="${newPokemon.hp}" class="form-control" placeholder="HP를 입력하세요">
         </div>
         <div>
             <label for="attack">공격</label>
-            <input type="text" id="attack" th:field="*{attack}" class="form-control" placeholder="공격력을 입력하세요">
+            <input type="text" id="attack" th:field="${newPokemon.attack}" class="form-control" placeholder="공격력을 입력하세요">
         </div>
         <div>
             <label for="defense">방어</label>
-            <input type="text" id="defense" th:field="*{defense}" class="form-control" placeholder="방어력을 입력하세요">
+            <input type="text" id="defense" th:field="${newPokemon.defense}" class="form-control" placeholder="방어력을 입력하세요">
         </div>
         <div>
             <label for="specialAttack">특수공격</label>
-            <input type="text" id="specialAttack" th:field="*{specialAttack}" class="form-control" placeholder="특수공격력을 입력하세요">
+            <input type="text" id="specialAttack" th:field="${newPokemon.specialAttack}" class="form-control" placeholder="특수공격력을 입력하세요">
         </div>
         <div>
             <label for="specialDefense">특수방어</label>
-            <input type="text" id="specialDefense" th:field="*{specialDefense}" class="form-control" placeholder="특수방어력을 입력하세요">
+            <input type="text" id="specialDefense" th:field="${newPokemon.specialDefense}" class="form-control" placeholder="특수방어력을 입력하세요">
         </div>
         <div>
             <label for="speed">스피드</label>
-            <input type="text" id="speed" th:field="*{speed}" class="form-control" placeholder="스피드를 입력하세요">
+            <input type="text" id="speed" th:field="${newPokemon.speed}" class="form-control" placeholder="스피드를 입력하세요">
         </div>
         <div>
             <label>타입 선택</label>
