@@ -24,13 +24,13 @@
 
     <form action="pokemon.html" th:action th:object="${pokemon}" method="post">
 
-        <div th:if="${#fields.hasGlobalErrors()}">
-            <p class="field-error", th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
-        </div>
+<!--        <div th:if="${#fields.hasGlobalErrors()}">-->
+<!--            <p class="field-error", th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>-->
+<!--        </div>-->
 
         <div>
             <label for="idPokemon">도감번호</label>
-            <input type="text" id="idPokemon"  class="form-control"
+            <input type="text" id="idPokemon" class="form-control"
                    th:field="*{idPokemon}" placeholder="도감번호를 입력하세요">
         </div>
         <div>
@@ -44,32 +44,50 @@
         <div>
             <label for="hp">HP</label>
             <input type="text" id="hp" class="form-control"
-                   th:field="*{hp}" placeholder="HP를 입력하세요">
+                   th:field="*{hp}" th:errorclass="field-error" placeholder="HP를 입력하세요">
+            <div class="field-error" th:errors="*{hp}">
+                HP 오류
+            </div>
         </div>
         <div>
             <label for="attack">공격</label>
             <input type="text" id="attack" class="form-control"
-                   th:field="*{attack}" placeholder="공격력을 입력하세요">
+                   th:field="*{attack}" th:errorclass="field-error" placeholder="공격력을 입력하세요">
+            <div class="field-error" th:errors="*{attack}">
+                공격 오류
+            </div>
         </div>
         <div>
             <label for="defense">방어</label>
             <input type="text" id="defense" class="form-control"
-                   th:field="*{defense}" placeholder="방어력을 입력하세요">
+                   th:field="*{defense}" th:errorclass="field-error" placeholder="방어력을 입력하세요">
+            <div class="field-error" th:errors="*{defense}">
+                방어 오류
+            </div>
         </div>
         <div>
             <label for="specialAttack">특수공격</label>
             <input type="text" id="specialAttack" class="form-control"
-                   th:field="*{specialAttack}" placeholder="특수공격력을 입력하세요">
+                   th:field="*{specialAttack}" th:errorclass="field-error" placeholder="특수공격력을 입력하세요">
+            <div class="field-error" th:errors="*{specialAttack}">
+                특수공격 오류
+            </div>
         </div>
         <div>
             <label for="specialDefense">특수방어</label>
             <input type="text" id="specialDefense" class="form-control"
-                   th:field="*{specialDefense}" placeholder="특수방어력을 입력하세요">
+                   th:field="*{specialDefense}" th:errorclass="field-error" placeholder="특수방어력을 입력하세요">
+            <div class="field-error" th:errors="*{specialDefense}">
+                특수방어 오류
+            </div>
         </div>
         <div>
             <label for="speed">스피드</label>
             <input type="text" id="speed" class="form-control"
-                   th:field="*{speed}" placeholder="스피드를 입력하세요">
+                   th:field="*{speed}" th:errorclass="field-error" placeholder="스피드를 입력하세요">
+            <div class="field-error" th:errors="*{speed}">
+                스피드 오류
+            </div>
         </div>
         <div>
             <label>타입 선택</label>
