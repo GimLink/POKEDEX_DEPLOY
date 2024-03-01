@@ -1,6 +1,7 @@
 package Link.pokemon.domain.pokemon;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.List;
 public class PokemonUpdateDto {
 
     private Long idPokemon;
-    @NotBlank
     private String pokemonName;
     private Integer hp;
     private Integer attack;
@@ -25,7 +25,7 @@ public class PokemonUpdateDto {
     }
 
     public PokemonUpdateDto(Long idPokemon, String pokemonName, Integer hp, Integer attack,
-                            Integer defense, Integer specialAttack, Integer specialDefense, Integer speed) {
+                            Integer defense, Integer specialAttack, Integer specialDefense, Integer speed, List<Types> types) {
         this.idPokemon = idPokemon;
         this.pokemonName = pokemonName;
         this.hp = hp;
@@ -34,9 +34,7 @@ public class PokemonUpdateDto {
         this.specialAttack = specialAttack;
         this.specialDefense = specialDefense;
         this.speed = speed;
+        this.types = types;
     }
 
-    public void addTypes(Types type) {
-        this.types.add(type);
-    }
 }
