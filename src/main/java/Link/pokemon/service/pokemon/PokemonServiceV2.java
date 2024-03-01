@@ -35,12 +35,15 @@ public class PokemonServiceV2 implements PokeService{
     public void update(Long pokemonId, PokemonUpdateDto updateParam) {
         Pokemon findPokemon = pokemonRepositoryV2.findById(pokemonId).orElseThrow();
 
-        findPokemon.setPokemonName(updateParam.getPokemon());
+        findPokemon.setIdPokemon(updateParam.getIdPokemon());
+        findPokemon.setPokemonName(updateParam.getPokemonName());
         findPokemon.setAttack(updateParam.getAttack());
         findPokemon.setDefense(updateParam.getDefense());
         findPokemon.setSpecialAttack(updateParam.getSpecialAttack());
         findPokemon.setSpecialDefense(updateParam.getSpecialDefense());
         findPokemon.setSpeed(updateParam.getSpeed());
+
+        findPokemon.setTypes(updateParam.getTypes());
     }
 
     @Override
