@@ -44,27 +44,45 @@
         </div>
         <div>
             <label for="hp">HP</label>
-            <input type="text" id="hp" th:field="*{hp}" class="form-control" placeholder="HP를 입력하세요">
+            <input type="text" id="hp" th:field="*{hp}" class="form-control" th:errorclass="field-error" placeholder="HP를 입력하세요">
+            <div class="field-error" th:errors="*{hp}">
+                HP 오류
+            </div>
         </div>
         <div>
             <label for="attack">공격</label>
-            <input type="text" id="attack" th:field="*{attack}" class="form-control" placeholder="공격력을 입력하세요">
+            <input type="text" id="attack" th:field="*{attack}" th:errorclass="field-error" class="form-control" placeholder="공격력을 입력하세요">
+            <div class="field-error" th:errors="*{attack}">
+                공격 오류
+            </div>
         </div>
         <div>
             <label for="defense">방어</label>
-            <input type="text" id="defense" th:field="*{defense}" class="form-control" placeholder="방어력을 입력하세요">
+            <input type="text" id="defense" th:field="*{defense}" th:errorclass="field-error" class="form-control" placeholder="방어력을 입력하세요">
+            <div class="field-error" th:errors="*{defense}">
+                방어 오류
+            </div>
         </div>
         <div>
             <label for="specialAttack">특수공격</label>
-            <input type="text" id="specialAttack" th:field="*{specialAttack}" class="form-control" placeholder="특수공격력을 입력하세요">
+            <input type="text" id="specialAttack" th:field="*{specialAttack}" th:errorclass="field-error" class="form-control" placeholder="특수공격력을 입력하세요">
+            <div class="field-error" th:errors="*{specialAttack}">
+                특수공격 오류
+            </div>
         </div>
         <div>
             <label for="specialDefense">특수방어</label>
-            <input type="text" id="specialDefense" th:field="*{specialDefense}" class="form-control" placeholder="특수방어력을 입력하세요">
+            <input type="text" id="specialDefense" th:field="*{specialDefense}" th:errorclass="field-error" class="form-control" placeholder="특수방어력을 입력하세요">
+            <div class="field-error" th:errors="*{specialDefense}">
+                특수방어 오류
+            </div>
         </div>
         <div>
             <label for="speed">스피드</label>
-            <input type="text" id="speed" th:field="*{speed}" class="form-control" placeholder="스피드를 입력하세요">
+            <input type="text" id="speed" th:field="*{speed}" class="form-control" th:errorclass="field-error" placeholder="스피드를 입력하세요">
+            <div class="field-error" th:errors="*{speed}">
+                스피드 오류
+            </div>
         </div>
         <div>
             <label>타입 선택</label>
