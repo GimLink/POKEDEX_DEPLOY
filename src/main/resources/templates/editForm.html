@@ -8,6 +8,10 @@
         .container {
             max-width: 800px;
         }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -32,8 +36,8 @@
         <div>
             <label for="pokemon">포켓몬</label>
             <input type="text" id="pokemon" class="form-control"
-                   th:field="*{getPokemonName}" th:errorclass="field-error" placeholder="이름을 입력하세요">
-            <div class="field-error" th:errors="*{getPokemonName}">
+                   th:field="*{pokemonName}" th:errorclass="field-error" placeholder="이름을 입력하세요">
+            <div class="field-error" th:errors="*{pokemonName}">
                 포켓몬 이름 오류
             </div>
         </div>
