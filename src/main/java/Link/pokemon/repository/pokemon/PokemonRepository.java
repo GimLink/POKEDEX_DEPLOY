@@ -46,7 +46,7 @@ public class PokemonRepository implements PokeRepository {
     public void update(Long pokemonId, PokemonUpdateDto updateParam) {
         Pokemon findPokemon = em.find(Pokemon.class, pokemonId);
 
-        findPokemon.setPokemonName(updateParam.getPokemon());
+        findPokemon.setPokemonName(updateParam.getPokemonName());
         findPokemon.setHp(updateParam.getHp());
         findPokemon.setAttack(updateParam.getAttack());
         findPokemon.setDefense(updateParam.getDefense());
