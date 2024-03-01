@@ -5,10 +5,11 @@ import Link.pokemon.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -20,12 +21,16 @@ public class MemberController {
 
     @GetMapping("/add")
     public String addForm(Member member) {
-        return "/addMemberForm";
+        return "/members/addMemberForm";
     }
 
     @PostMapping("/add")
-    public String addMember(Member newMember) {
-        Member addMember = memberService.save(newMember);
+    public String addMember(@Validated Member member, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "members/addMemberForm";
+        }
+
+        Member addMember = memberService.save(member);
 
         return "redirect:/";
     }
