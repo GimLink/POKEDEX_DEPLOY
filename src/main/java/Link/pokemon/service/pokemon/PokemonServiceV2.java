@@ -3,6 +3,7 @@ package Link.pokemon.service.pokemon;
 import Link.pokemon.domain.pokemon.Pokemon;
 import Link.pokemon.domain.pokemon.PokemonSearchCond;
 import Link.pokemon.domain.pokemon.PokemonUpdateDto;
+import Link.pokemon.domain.pokemon.Types;
 import Link.pokemon.repository.pokemon.PokemonQueryRepository;
 import Link.pokemon.repository.pokemon.PokemonRepositoryV2;
 import lombok.RequiredArgsConstructor;
@@ -37,13 +38,18 @@ public class PokemonServiceV2 implements PokeService{
 
         findPokemon.setIdPokemon(updateParam.getIdPokemon());
         findPokemon.setPokemonName(updateParam.getPokemonName());
+        findPokemon.setHp(updateParam.getHp());
         findPokemon.setAttack(updateParam.getAttack());
         findPokemon.setDefense(updateParam.getDefense());
         findPokemon.setSpecialAttack(updateParam.getSpecialAttack());
         findPokemon.setSpecialDefense(updateParam.getSpecialDefense());
         findPokemon.setSpeed(updateParam.getSpeed());
 
-        findPokemon.setTypes(updateParam.getTypes());
+        for (Types type : updateParam.getTypes()) {
+            findPokemon.addTypes(type);
+        }
+
+
     }
 
     @Override
