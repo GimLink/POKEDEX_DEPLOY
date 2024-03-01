@@ -86,6 +86,10 @@ public class PokemonController {
                              @RequestParam(name = "typeIds", required = false) Long[] typeIds,
                              RedirectAttributes redirect) {
 
+        if (bindingResult.hasErrors()) {
+            log.info("error = {}", bindingResult);
+            return "addForm";
+        }
 
         if (typeIds != null) {
             for (Long typeId : typeIds) {
@@ -96,18 +100,8 @@ public class PokemonController {
             }
         }
 
-        try {
-            Pokemon addPokemon = pokemonService.save(pokemon);
-            redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
-            redirect.addAttribute("status", true);
-        } catch (RuntimeException e) {
-            log.info("error = {}", e);
-        }
 
-        if (bindingResult.hasErrors()) {
-            log.info("error = {}", bindingResult);
-            return "addForm";
-        }
+        pokemonService.save(pokemon);
 
         return "redirect:/pokemons/{idPokemon}";
     }
@@ -137,10 +131,17 @@ public class PokemonController {
     }
 
     @PostMapping("/{idPokemon}/edit")
-    public String edit(@Validated @PathVariable Long idPokemon,
-                       @RequestParam(name = "typeIds", required = false) Long[] typeIds,
-                       @ModelAttribute PokemonUpdateDto update, BindingResult bindingResult) {
+    public String edit(@Validated @ModelAttribute PokemonUpdateDto update, BindingResult bindingResult,
+                       @PathVariable Long idPokemon,
+                       @RequestParam(name = "typeIds", required = false) Long[] typeIds) {
+
+        if (bindingResult.hasErrors()) {
+            log.info("error = {}", bindingResult);
+            return "/editForm";
+        }
+
         Pokemon updatePokemon = pokemonService.findById(idPokemon).get();
+
         if (typeIds != null) {
             for (Long typeId : typeIds) {
                 Types existingType = typeService.findById(typeId).get();
@@ -149,15 +150,8 @@ public class PokemonController {
                 }
             }
         }
-        try {
-            pokemonService.update(idPokemon, update);
-        } catch (RuntimeException e) {
-            log.info("erroe = {}", e);
-        }
 
-        if (bindingResult.hasErrors()) {
-            return "/editForm";
-        }
+        pokemonService.update(idPokemon, update);
 
         return "redirect:/pokemons/{idPokemon}";
     }
