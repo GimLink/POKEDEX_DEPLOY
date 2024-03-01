@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PokemonSearchCond {
 
-    private String pokemon;
+    private String pokemonName;
     private Integer hp;
     private Integer attack;
     private Integer defense;

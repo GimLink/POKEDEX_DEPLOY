@@ -18,7 +18,7 @@ public class Pokemon {
     private Long idPokemon;
 
     @NotBlank
-    private String pokemon;
+    private String pokemonName;
 
     @NotNull
     private Integer hp;
@@ -56,10 +56,10 @@ public class Pokemon {
 
     }
 
-    public Pokemon(Long idPokemon, String pokemon, Integer hp, Integer attack, Integer defense, Integer specialAttack,
+    public Pokemon(Long idPokemon, String pokemonName, Integer hp, Integer attack, Integer defense, Integer specialAttack,
                    Integer specialDefense, Integer speed) {
         this.idPokemon = idPokemon;
-        this.pokemon = pokemon;
+        this.pokemonName = pokemonName;
         this.hp = hp;
         this.attack = attack;
         this.defense = defense;

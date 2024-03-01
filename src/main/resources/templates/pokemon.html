@@ -35,7 +35,7 @@
       <tbody>
       <tr>
         <td class="text-center"><a th:text="${pokemon.idPokemon}">No.</a></td>
-        <td class="text-center"><a th:text="${pokemon.getPokemon}">포켓몬</a></td>
+        <td class="text-center"><a th:text="${pokemon.getPokemonName}">포켓몬</a></td>
         <td class="text-center">
           <th:block th:each="type, iterStat : ${pokemon.types}">
             <a href="typePokemons.html" th:href="@{/pokemons/type/{type}(type=${type.getType()})}" th:text="${type.getType()}"></a>
@@ -63,7 +63,7 @@
       </thead>
       <tbody>
       <tr>
-        <td class="text-center"><a th:text="${pokemon.getPokemon}">포켓몬</a></td>
+        <td class="text-center"><a th:text="${pokemon.getPokemonName}">포켓몬</a></td>
         <td class="text-center"><a th:text="${pokemon.hp}">HP</a></td>
         <td class="text-center"><a th:text="${pokemon.attack}">공격</a></td>
         <td class="text-center"><a th:text="${pokemon.defense}">방어</a></td>

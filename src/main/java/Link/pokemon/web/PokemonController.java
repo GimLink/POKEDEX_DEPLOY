@@ -82,7 +82,7 @@ public class PokemonController {
 
     @PostMapping("/add")
 //    ModelAttribute 사용하면 Pokemon객체가 자동으로 pokemon으로 바인딩 돼서 포켓몬 이름을 필드인 pokemon과 충돌 typemismatch 에러 발생
-    public String addPokemonV2(@Validated @ModelAttribute(name = "newPokemon") Pokemon newPokemon,
+    public String addPokemonV2(@Validated @ModelAttribute Pokemon pokemon,
                              BindingResult bindingResult,
                              @RequestParam(name = "typeIds", required = false) Long[] typeIds,
                              RedirectAttributes redirect) {
@@ -91,11 +91,11 @@ public class PokemonController {
             for (Long typeId : typeIds) {
                 Types existingType = typeService.findById(typeId).get();
                 if (existingType != null) {
-                    newPokemon.addTypes(existingType);
+                    pokemon.addTypes(existingType);
                 }
             }
         }
-        Pokemon addPokemon = pokemonService.save(newPokemon);
+        Pokemon addPokemon = pokemonService.save(pokemon);
 
         redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
         redirect.addAttribute("status", true);

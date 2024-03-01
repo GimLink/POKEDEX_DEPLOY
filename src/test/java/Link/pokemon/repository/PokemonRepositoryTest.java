@@ -32,7 +32,7 @@ class PokemonRepositoryTest {
     void findById() {
 //        Pokemon testPokemon = new Pokemon(200L,"test", 1, 1, 1, 1, 1, 1);
         Pokemon pokemon = repository.findById(1L).get();
-        log.info("pokemon = {}", pokemon.getPokemon());
+        log.info("pokemon = {}", pokemon.getPokemonName());
 
         assertThat(pokemon.getIdPokemon()).isEqualTo(1);
     }

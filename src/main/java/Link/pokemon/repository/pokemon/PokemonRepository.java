@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static Link.pokemon.domain.pokemon.QPokemon.pokemon1;
+import static Link.pokemon.domain.pokemon.QPokemon.pokemon;
 
 @Slf4j
 @Transactional
@@ -46,7 +46,7 @@ public class PokemonRepository implements PokeRepository {
     public void update(Long pokemonId, PokemonUpdateDto updateParam) {
         Pokemon findPokemon = em.find(Pokemon.class, pokemonId);
 
-        findPokemon.setPokemon(updateParam.getPokemon());
+        findPokemon.setPokemonName(updateParam.getPokemon());
         findPokemon.setHp(updateParam.getHp());
         findPokemon.setAttack(updateParam.getAttack());
         findPokemon.setDefense(updateParam.getDefense());
@@ -66,8 +66,8 @@ public class PokemonRepository implements PokeRepository {
         Integer speed = cond.getSpeed();
 
         return query
-                .select(pokemon1)
-                .from(pokemon1)
+                .select(pokemon)
+                .from(pokemon)
                 .where(maxHp(hp), maxAttack(attack), maxDefense(defense), maxSattack(specialAttack),
                         maxSdefense(specialDefense), maxSpeed(speed))
                 .fetch();
@@ -76,42 +76,42 @@ public class PokemonRepository implements PokeRepository {
 
     private BooleanExpression maxHp(Integer maxHp) {
         if (maxHp != null) {
-            return pokemon1.hp.loe(maxHp);
+            return pokemon.hp.loe(maxHp);
         }
         return null;
     }
 
     private BooleanExpression maxAttack(Integer maxAttack) {
         if (maxAttack != null) {
-            return pokemon1.hp.loe(maxAttack);
+            return pokemon.hp.loe(maxAttack);
         }
         return null;
     }
 
     private BooleanExpression maxDefense(Integer maxDefense) {
         if (maxDefense != null) {
-            return pokemon1.hp.loe(maxDefense);
+            return pokemon.hp.loe(maxDefense);
         }
         return null;
     }
 
     private BooleanExpression maxSattack(Integer maxSattack) {
         if (maxSattack != null) {
-            return pokemon1.hp.loe(maxSattack);
+            return pokemon.hp.loe(maxSattack);
         }
         return null;
     }
 
     private BooleanExpression maxSdefense(Integer maxSdefense) {
         if (maxSdefense != null) {
-            return pokemon1.hp.loe(maxSdefense);
+            return pokemon.hp.loe(maxSdefense);
         }
         return null;
     }
 
     private BooleanExpression maxSpeed(Integer maxSpeed) {
         if (maxSpeed != null) {
-            return pokemon1.hp.loe(maxSpeed);
+            return pokemon.hp.loe(maxSpeed);
         }
         return null;
     }

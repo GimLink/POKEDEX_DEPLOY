@@ -32,8 +32,8 @@
         <div>
             <label for="pokemon">포켓몬</label>
             <input type="text" id="pokemon" class="form-control"
-                   th:field="*{pokemon}" th:errorclass="field-error" placeholder="이름을 입력하세요">
-            <div class="field-error" th:errors="*{pokemon}">
+                   th:field="*{getPokemonName}" th:errorclass="field-error" placeholder="이름을 입력하세요">
+            <div class="field-error" th:errors="*{getPokemonName}">
                 포켓몬 이름 오류
             </div>
         </div>

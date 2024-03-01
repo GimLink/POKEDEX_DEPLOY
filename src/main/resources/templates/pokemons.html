@@ -15,7 +15,7 @@
     <form th:object="${pokemonSearch}" method="get" class="form-inline">
     <div class="row">
         <div class="col">
-            <input type="text" th:field="*{pokemon}" class="form-control" placeholder="검색"/>
+            <input type="text" th:field="*{pokemonName}" class="form-control" placeholder="검색"/>
         </div>
         <div class="col">
             <button type="submit" class="btn btn-secondary mb-2">검색</button>
@@ -49,7 +49,7 @@
             <tr th:each="pokemon : ${pokemons}">
                 <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.idPokemon}">도감번호</a>
                 </td>
-                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.getPokemon}">포켓몬</a></td>
+                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.pokemonName}">포켓몬</a></td>
                 <td>
                     <th:block th:each="type, iterStat : ${pokemon.types}">
                         <a href="typePokemons.html" th:href="@{/pokemons/type/{type}(type=${type.getType()})}" th:text="${type.getType()}"></a>
