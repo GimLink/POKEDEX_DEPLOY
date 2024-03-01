@@ -26,7 +26,7 @@
             <tr th:each="pokemon : ${type.getPokemons()}">
                 <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.idPokemon}">도감번호</a>
                 </td>
-                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.getPokemon}">포켓몬</a></td>
+                <td><a href="pokemon.html" th:href="@{/pokemons/{idPokemon}(idPokemon=${pokemon.idPokemon})}" th:text="${pokemon.getPokemonName}">포켓몬</a></td>
                 <td th:text="${type.getType()}">타입</td>
             </tr>
             </tbody>
