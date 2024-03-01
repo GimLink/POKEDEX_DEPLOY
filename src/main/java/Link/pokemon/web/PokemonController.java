@@ -5,7 +5,6 @@ import Link.pokemon.domain.pokemon.PokemonSearchCond;
 import Link.pokemon.domain.pokemon.PokemonUpdateDto;
 import Link.pokemon.domain.pokemon.Types;
 import Link.pokemon.service.pokemon.PokemonServiceV2;
-import Link.pokemon.service.type.TypeService;
 import Link.pokemon.service.type.TypeServiceInter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -87,6 +86,7 @@ public class PokemonController {
                              @RequestParam(name = "typeIds", required = false) Long[] typeIds,
                              RedirectAttributes redirect) {
 
+
         if (typeIds != null) {
             for (Long typeId : typeIds) {
                 Types existingType = typeService.findById(typeId).get();
@@ -95,10 +95,14 @@ public class PokemonController {
                 }
             }
         }
-        Pokemon addPokemon = pokemonService.save(pokemon);
 
-        redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
-        redirect.addAttribute("status", true);
+        try {
+            Pokemon addPokemon = pokemonService.save(pokemon);
+            redirect.addAttribute("idPokemon", addPokemon.getIdPokemon());
+            redirect.addAttribute("status", true);
+        } catch (RuntimeException e) {
+            log.info("error = {}", e);
+        }
 
         if (bindingResult.hasErrors()) {
             log.info("error = {}", bindingResult);
@@ -145,7 +149,11 @@ public class PokemonController {
                 }
             }
         }
-        pokemonService.update(idPokemon, update);
+        try {
+            pokemonService.update(idPokemon, update);
+        } catch (RuntimeException e) {
+            log.info("erroe = {}", e);
+        }
 
         if (bindingResult.hasErrors()) {
             return "/editForm";
