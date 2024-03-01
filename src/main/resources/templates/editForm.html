@@ -92,26 +92,47 @@
         <div>
             <label>타입 선택</label>
             <!--            <select id="typeIds" name="typeIds" class="form-control" multiple>-->
+<!--            <br>-->
+<!--            <input type="checkbox" name="typeIds" value="0" th:checked="${type1.getIdType()==0 or type2.getIdType()==0}"> 없음-->
+<!--            <input type="checkbox" name="typeIds" value="1" th:checked="${type1.getIdType()==1 or type2.getIdType()==1}"> 노말-->
+<!--            <input type="checkbox" name="typeIds" value="2" th:checked="${type1.getIdType()==2 or type2.getIdType()==2}"> 불-->
+<!--            <input type="checkbox" name="typeIds" value="3" th:checked="${type1.getIdType()==3 or type2.getIdType()==3}"> 물-->
+<!--            <input type="checkbox" name="typeIds" value="4" th:checked="${type1.getIdType()==4 or type2.getIdType()==4}"> 풀-->
+<!--            <input type="checkbox" name="typeIds" value="5" th:checked="${type1.getIdType()==5 or type2.getIdType()==5}"> 전기-->
+<!--            <input type="checkbox" name="typeIds" value="6" th:checked="${type1.getIdType()==6 or type2.getIdType()==6}"> 얼음-->
+<!--            <input type="checkbox" name="typeIds" value="7" th:checked="${type1.getIdType()==7 or type2.getIdType()==7}"> 격투-->
+<!--            <input type="checkbox" name="typeIds" value="8" th:checked="${type1.getIdType()==8 or type2.getIdType()==8}"> 독-->
+<!--            <br>-->
+<!--            <input type="checkbox" name="typeIds" value="9" th:checked="${type1.getIdType()==9 or type2.getIdType()==9}"> 땅-->
+<!--            <input type="checkbox" name="typeIds" value="10" th:checked="${type1.getIdType()==10 or type2.getIdType()==10}"> 비행-->
+<!--            <input type="checkbox" name="typeIds" value="11" th:checked="${type1.getIdType()==11 or type2.getIdType()==11}"> 에스퍼-->
+<!--            <input type="checkbox" name="typeIds" value="12" th:checked="${type1.getIdType()==12 or type2.getIdType()==12}"> 벌레-->
+<!--            <input type="checkbox" name="typeIds" value="13" th:checked="${type1.getIdType()==13 or type2.getIdType()==13}"> 바위-->
+<!--            <input type="checkbox" name="typeIds" value="14" th:checked="${type1.getIdType()==14 or type2.getIdType()==14}"> 고스트-->
+<!--            <input type="checkbox" name="typeIds" value="15" th:checked="${type1.getIdType()==15 or type2.getIdType()==15}"> 악-->
+<!--            <input type="checkbox" name="typeIds" value="16" th:checked="${type1.getIdType()==16 or type2.getIdType()==16}"> 용-->
+<!--            <input type="checkbox" name="typeIds" value="17" th:checked="${type1.getIdType()==17 or type2.getIdType()==17}"> 강철-->
+
             <br>
-            <input type="checkbox" name="typeIds" value="0" th:checked="${type1.getIdType()==0 or type2.getIdType()==0}"> 없음
-            <input type="checkbox" name="typeIds" value="1" th:checked="${type1.getIdType()==1 or type2.getIdType()==1}"> 노말
-            <input type="checkbox" name="typeIds" value="2" th:checked="${type1.getIdType()==2 or type2.getIdType()==2}"> 불
-            <input type="checkbox" name="typeIds" value="3" th:checked="${type1.getIdType()==3 or type2.getIdType()==3}"> 물
-            <input type="checkbox" name="typeIds" value="4" th:checked="${type1.getIdType()==4 or type2.getIdType()==4}"> 풀
-            <input type="checkbox" name="typeIds" value="5" th:checked="${type1.getIdType()==5 or type2.getIdType()==5}"> 전기
-            <input type="checkbox" name="typeIds" value="6" th:checked="${type1.getIdType()==6 or type2.getIdType()==6}"> 얼음
-            <input type="checkbox" name="typeIds" value="7" th:checked="${type1.getIdType()==7 or type2.getIdType()==7}"> 격투
-            <input type="checkbox" name="typeIds" value="8" th:checked="${type1.getIdType()==8 or type2.getIdType()==8}"> 독
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="0"> 없음
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="1"> 노말
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="2"> 불
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="3"> 물
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="4"> 풀
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="5"> 전기
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="6"> 얼음
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="7"> 격투
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="8"> 독
             <br>
-            <input type="checkbox" name="typeIds" value="9" th:checked="${type1.getIdType()==9 or type2.getIdType()==9}"> 땅
-            <input type="checkbox" name="typeIds" value="10" th:checked="${type1.getIdType()==10 or type2.getIdType()==10}"> 비행
-            <input type="checkbox" name="typeIds" value="11" th:checked="${type1.getIdType()==11 or type2.getIdType()==11}"> 에스퍼
-            <input type="checkbox" name="typeIds" value="12" th:checked="${type1.getIdType()==12 or type2.getIdType()==12}"> 벌레
-            <input type="checkbox" name="typeIds" value="13" th:checked="${type1.getIdType()==13 or type2.getIdType()==13}"> 바위
-            <input type="checkbox" name="typeIds" value="14" th:checked="${type1.getIdType()==14 or type2.getIdType()==14}"> 고스트
-            <input type="checkbox" name="typeIds" value="15" th:checked="${type1.getIdType()==15 or type2.getIdType()==15}"> 악
-            <input type="checkbox" name="typeIds" value="16" th:checked="${type1.getIdType()==16 or type2.getIdType()==16}"> 용
-            <input type="checkbox" name="typeIds" value="17" th:checked="${type1.getIdType()==17 or type2.getIdType()==17}"> 강철
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="9"> 땅
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="10"> 비행
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="11"> 에스퍼
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="12"> 벌레
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="13"> 바위
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="14"> 고스트
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="15"> 악
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="16"> 용
+            <input type="checkbox" th:field="*{types}" name="typeIds" value="17"> 강철
             <!--            </select>-->
         </div>
 
