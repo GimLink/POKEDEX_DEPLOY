@@ -80,10 +80,8 @@ public class PokemonController {
     }
 
     @PostMapping("/add")
-//    ModelAttribute 사용하면 Pokemon객체가 자동으로 pokemon으로 바인딩 돼서 포켓몬 이름을 필드인 pokemon과 충돌 typemismatch 에러 발생
     public String addPokemonV2(@Validated @ModelAttribute Pokemon pokemon,
                              BindingResult bindingResult,
-                             @RequestParam(name = "typeIds", required = false) Long[] typeIds,
                              RedirectAttributes redirect) {
 
         if (bindingResult.hasErrors()) {
@@ -91,17 +89,11 @@ public class PokemonController {
             return "addForm";
         }
 
-        if (typeIds != null) {
-            for (Long typeId : typeIds) {
-                Types existingType = typeService.findById(typeId).get();
-                if (existingType != null) {
-                    pokemon.addTypes(existingType);
-                }
-            }
-        }
-
-
         pokemonService.save(pokemon);
+
+
+        redirect.addAttribute("idPokemon", pokemon.getIdPokemon());
+        redirect.addAttribute("status", true);
 
         return "redirect:/pokemons/{idPokemon}";
     }
@@ -110,48 +102,44 @@ public class PokemonController {
     public String editForm(@PathVariable Long idPokemon, Model model) {
         Pokemon pokemon = pokemonService.findById(idPokemon).get();
         model.addAttribute("pokemon", pokemon);
-        int i = 1;
 
-        if (pokemon.getTypes().size() >= 2) {
-            for (Types type : pokemon.getTypes()) {
-                if (i == 1) {
-                    model.addAttribute("type1", type);
-                } else {
-                    model.addAttribute("type2", type);
-                }
-                i++;
-            }
-        } else {
-            Types nullType = new Types();
-            model.addAttribute("type1", pokemon.getTypes().get(0));
-            model.addAttribute("type2", nullType);
-        }
 
-        return "/editForm";
+//        타임리프 사용해서 이런식으로 안해도 기존 타입 체크돼있게 변경
+
+//        if (typeIds != null) {
+//            for (Long typeId : typeIds) {
+//                Types existingType = typeService.findById(typeId).get();
+//                if (existingType != null) {
+//                    updatePokemon.addTypes(existingType);
+//                }
+//            }
+//        }
+
+        return "editForm";
     }
 
     @PostMapping("/{idPokemon}/edit")
-    public String edit(@Validated @ModelAttribute PokemonUpdateDto update, BindingResult bindingResult,
-                       @PathVariable Long idPokemon,
-                       @RequestParam(name = "typeIds", required = false) Long[] typeIds) {
+    public String edit(@Validated @ModelAttribute Pokemon pokemon, BindingResult bindingResult,
+                       @PathVariable Long idPokemon) {
+
+        log.info("pokemon = {}", pokemon);
+        log.info("errors = {}", bindingResult);
 
         if (bindingResult.hasErrors()) {
             log.info("error = {}", bindingResult);
-            return "/editForm";
+            return "editForm";
         }
 
-        Pokemon updatePokemon = pokemonService.findById(idPokemon).get();
 
-        if (typeIds != null) {
-            for (Long typeId : typeIds) {
-                Types existingType = typeService.findById(typeId).get();
-                if (existingType != null) {
-                    updatePokemon.addTypes(existingType);
-                }
-            }
-        }
+        PokemonUpdateDto update = new PokemonUpdateDto(pokemon.getIdPokemon(), pokemon.getPokemonName(), pokemon.getHp(),
+                pokemon.getAttack(), pokemon.getDefense(), pokemon.getSpecialAttack(), pokemon.getSpecialDefense(),
+                pokemon.getSpeed(), pokemon.getTypes());
+
+        log.info("update = {}", update);
+
 
         pokemonService.update(idPokemon, update);
+
 
         return "redirect:/pokemons/{idPokemon}";
     }
