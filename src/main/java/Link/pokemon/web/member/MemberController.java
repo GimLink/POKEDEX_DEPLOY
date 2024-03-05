@@ -1,4 +1,4 @@
-package Link.pokemon.web;
+package Link.pokemon.web.member;
 
 import Link.pokemon.domain.member.Member;
 import Link.pokemon.service.member.MemberService;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,7 +21,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/add")
-    public String addForm(Member member) {
+    public String addForm(@ModelAttribute(name="member") Member member) {
         return "/members/addMemberForm";
     }
 
