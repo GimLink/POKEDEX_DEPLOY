@@ -1,4 +1,4 @@
-package Link.pokemon.web;
+package Link.pokemon.web.pokemon;
 
 import Link.pokemon.domain.pokemon.Pokemon;
 import Link.pokemon.domain.pokemon.PokemonSearchCond;
@@ -131,6 +131,7 @@ public class PokemonController {
         }
 
 
+        //updateDto를 쓰려고 억지로 넣는 느낌 Dto 객체 없애버리고 그냥 Pokemon 객체로 해도 되지 않나 싶기도
         PokemonUpdateDto update = new PokemonUpdateDto(pokemon.getIdPokemon(), pokemon.getPokemonName(), pokemon.getHp(),
                 pokemon.getAttack(), pokemon.getDefense(), pokemon.getSpecialAttack(), pokemon.getSpecialDefense(),
                 pokemon.getSpeed(), pokemon.getTypes());
