@@ -19,33 +19,33 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/pokemons")
+//@RequestMapping("/pokemons")
 @RequiredArgsConstructor
 public class PokemonController {
 
     private final PokemonServiceV2 pokemonService;
     private final TypeServiceInter typeService;
 
-    @GetMapping
+    @GetMapping("/pokemons")
     public String pokemons(@ModelAttribute("pokemonSearch") PokemonSearchCond pokemonSearch, Model model) {
         List<Pokemon> pokemons = pokemonService.findAll(pokemonSearch);
         model.addAttribute("pokemons", pokemons);
         return "pokemons";
     }
-    @GetMapping("/{idPokemon}")
+    @GetMapping("/pokemons/{idPokemon}")
     public String pokemon(@PathVariable(name = "idPokemon") Long idPokemon, Model model) {
         Pokemon pokemon = pokemonService.findById(idPokemon).get();
         model.addAttribute("pokemon", pokemon);
         return "pokemon";
     }
-    @GetMapping("/type/{type}")
+    @GetMapping("/pokemons/type/{type}")
     public String typePokemons(@PathVariable(name = "type") String typeName, Model model) {
         Types type = typeService.findByType(typeName).get();
         model.addAttribute("type", type);
         return "typePokemons";
     }
 
-    @GetMapping("/admin/add")
+    @GetMapping("/admin/pokemons/add")
     public String addForm(@ModelAttribute Pokemon pokemon) {return "addForm";}
 
 //    @PostMapping("/add")
@@ -79,7 +79,7 @@ public class PokemonController {
         return "redirect:/pokemons/{idPokemon}";
     }
 
-    @PostMapping("/admin/add")
+    @PostMapping("/admin/pokemons/add")
     public String addPokemonV2(@Validated @ModelAttribute Pokemon pokemon,
                              BindingResult bindingResult,
                              RedirectAttributes redirect) {
@@ -98,7 +98,7 @@ public class PokemonController {
         return "redirect:/pokemons/{idPokemon}";
     }
 
-    @GetMapping("/admin/{idPokemon}/edit")
+    @GetMapping("/admin/pokemons/{idPokemon}/edit")
     public String editForm(@PathVariable Long idPokemon, Model model) {
         Pokemon pokemon = pokemonService.findById(idPokemon).get();
         model.addAttribute("pokemon", pokemon);
@@ -118,7 +118,7 @@ public class PokemonController {
         return "editForm";
     }
 
-    @PostMapping("/admin/{idPokemon}/edit")
+    @PostMapping("/admin/pokemons/{idPokemon}/edit")
     public String edit(@Validated @ModelAttribute Pokemon pokemon, BindingResult bindingResult,
                        @PathVariable Long idPokemon) {
 
