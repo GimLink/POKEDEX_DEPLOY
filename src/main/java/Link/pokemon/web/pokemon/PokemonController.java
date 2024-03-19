@@ -45,7 +45,7 @@ public class PokemonController {
         return "typePokemons";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/admin/add")
     public String addForm(@ModelAttribute Pokemon pokemon) {return "addForm";}
 
 //    @PostMapping("/add")
@@ -79,7 +79,7 @@ public class PokemonController {
         return "redirect:/pokemons/{idPokemon}";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/admin/add")
     public String addPokemonV2(@Validated @ModelAttribute Pokemon pokemon,
                              BindingResult bindingResult,
                              RedirectAttributes redirect) {
@@ -98,7 +98,7 @@ public class PokemonController {
         return "redirect:/pokemons/{idPokemon}";
     }
 
-    @GetMapping("/{idPokemon}/edit")
+    @GetMapping("/admin/{idPokemon}/edit")
     public String editForm(@PathVariable Long idPokemon, Model model) {
         Pokemon pokemon = pokemonService.findById(idPokemon).get();
         model.addAttribute("pokemon", pokemon);
@@ -118,7 +118,7 @@ public class PokemonController {
         return "editForm";
     }
 
-    @PostMapping("/{idPokemon}/edit")
+    @PostMapping("/admin/{idPokemon}/edit")
     public String edit(@Validated @ModelAttribute Pokemon pokemon, BindingResult bindingResult,
                        @PathVariable Long idPokemon) {
 
