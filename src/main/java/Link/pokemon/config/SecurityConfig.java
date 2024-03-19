@@ -1,10 +1,14 @@
 package Link.pokemon.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -13,9 +17,10 @@ public class SecurityConfig {
 
         http.formLogin((form) -> {
             form
-                    .loginPage("/login/loginForm")
+                    .loginPage("/login")
                     .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/home");
+                    .defaultSuccessUrl("/")
+                    .usernameParameter("loginId");
         });
 
 
@@ -23,13 +28,16 @@ public class SecurityConfig {
                 basic.disable());
 
 
+//        http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
+
+
         http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/pokemons/**").authenticated()
                 .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                 .anyRequest().permitAll());
-가
 
 
         return http.build();
     }
+
 
 }
