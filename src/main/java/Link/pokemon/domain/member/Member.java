@@ -25,4 +25,6 @@ public class Member {
     @NotBlank
     @Size(min = 8, max = 20, message = "비밀번호는 최소 8자리에서 최대 20자리 입니다.")
     private String password;
+
+    private Role role;
 }
