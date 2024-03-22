@@ -21,13 +21,11 @@ public class PrincipalDetailsService implements UserDetailsService {
 
         log.info("loginId = {}", loginId);
 
-        Member memberEntity = memberRepository.findByLoginId(loginId).get();
+        Member memberEntity = memberRepository.findByLoginId(loginId).orElseThrow(() -> {
+            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다. :" + loginId);
+        });
         log.info("member = {}", memberEntity);
 
-        if (loginId != null) {
-            return new PrincipalDetails(memberEntity);
-        }
-
-        return null;
+        return new PrincipalDetails(memberEntity);
     }
 }

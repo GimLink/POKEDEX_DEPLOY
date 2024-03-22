@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,14 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute(name = "loginform") LoginForm form) {
+    public String loginForm(@ModelAttribute(name = "loginform") LoginForm form,
+                            @RequestParam (value = "error", required = false)String error,
+                            @RequestParam (value = "exception", required = false)String exception,
+                            Model model) {
+
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+
         return "login/loginForm";
     }
 
@@ -30,6 +38,8 @@ public class LoginController {
     public String login(@Validated @ModelAttribute(name = "loginform") LoginForm form, BindingResult bindingResult,
                         @RequestParam(defaultValue = "/") String redirectURL,
                         HttpServletRequest request) {
+
+
         if (bindingResult.hasErrors()) {
             return "login/loginForm";
         }
@@ -62,4 +72,6 @@ public class LoginController {
 
         return "redirect:/";
     }
+
+
 }

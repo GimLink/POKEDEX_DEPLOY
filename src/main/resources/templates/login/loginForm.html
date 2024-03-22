@@ -24,6 +24,9 @@
       <p class="field-error" th:each="err : ${#fields.globalErrors()}"
          th:text="${err}">전체 오류 메시지</p>
     </div>
+    <div th:if="error">
+      <p class="field-error" th:text="${exception}"></p>
+    </div>
     <div>
       <label for="loginId">로그인 ID</label>
       <input type="text" id="loginId" th:field="*{loginId}" class="formcontrol"
