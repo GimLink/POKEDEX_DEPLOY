@@ -5,6 +5,7 @@ import Link.pokemon.domain.pokemon.PokemonSearchCond;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class PokemonQueryRepository {
 
     public List<Pokemon> findAll(PokemonSearchCond cond) {
 
+        String pokemonName = cond.getPokemonName();
         Integer hp = cond.getHp();
         Integer attack = cond.getAttack();
         Integer defense = cond.getDefense();
@@ -30,10 +32,17 @@ public class PokemonQueryRepository {
         return query
                 .select(pokemon)
                 .from(pokemon)
-                .where(maxHp(hp), maxAttack(attack), maxDefense(defense), maxSattack(specialAttack),
+                .where(likePokemonName(pokemonName), maxHp(hp), maxAttack(attack), maxDefense(defense), maxSattack(specialAttack),
                         maxSdefense(specialDefense), maxSpeed(speed))
                 .fetch();
 
+    }
+
+    private BooleanExpression likePokemonName(String pokemonName) {
+        if (StringUtils.hasText(pokemonName)) {
+            return pokemon.pokemonName.like("%" + pokemonName + "%");
+        }
+        return null;
     }
 
     private BooleanExpression maxHp(Integer maxHp) {

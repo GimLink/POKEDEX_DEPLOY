@@ -39,7 +39,7 @@ class PokemonRepositoryTest {
 
     @Test
     void findAll() {
-        PokemonSearchCond cond = new PokemonSearchCond(30, null, null, null,
+        PokemonSearchCond cond = new PokemonSearchCond("I", 30, null, null, null,
                 null, null);
         List<Pokemon> pokemon = query.findAll(cond);
 

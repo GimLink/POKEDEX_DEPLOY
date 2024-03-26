@@ -15,8 +15,9 @@ public class PokemonSearchCond {
 
     public PokemonSearchCond() {}
 
-    public PokemonSearchCond(Integer hp, Integer attack,
+    public PokemonSearchCond(String pokemonName, Integer hp, Integer attack,
                              Integer defense, Integer specialAttack, Integer specialDefense, Integer speed) {
+        this.pokemonName = pokemonName;
         this.hp = hp;
         this.attack = attack;
         this.defense = defense;
