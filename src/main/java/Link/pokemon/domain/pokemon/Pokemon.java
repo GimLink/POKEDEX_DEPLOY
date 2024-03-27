@@ -33,6 +33,8 @@ public class Pokemon {
     @NotNull
     private Integer speed;
 
+    private String imageUrl;
+
     @ManyToMany
     @JoinTable(
             name = "rel_pokemon_type",

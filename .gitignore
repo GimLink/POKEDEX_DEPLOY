@@ -6,6 +6,7 @@ build/
 !**/src/test/**/build/
 src/main/generated/Link/pokemon/domain/member
 src/main/generated/Link/pokemon/domain/pokemon
+.png
 
 ### STS ###
 .apt_generated

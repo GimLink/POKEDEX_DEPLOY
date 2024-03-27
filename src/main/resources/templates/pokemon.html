@@ -20,6 +20,11 @@
   <h2 th:if="${param.status}" th:text="'저장 완료'"></h2>
 
   <hr class="my-4">
+  <div class="item_image_box">
+    <div style="text-align: center;">
+      <img th:src="${pokemon.imageUrl}" class="item_image">
+    </div>
+  </div>
   <div>
     <table class="table">
       <thead>
