@@ -4,6 +4,7 @@ import Link.pokemon.domain.pokemon.Pokemon;
 import Link.pokemon.domain.pokemon.PokemonSearchCond;
 import Link.pokemon.domain.pokemon.PokemonUpdateDto;
 import Link.pokemon.domain.pokemon.Types;
+import Link.pokemon.service.pokemon.PokeService;
 import Link.pokemon.service.pokemon.PokemonServiceV2;
 import Link.pokemon.service.type.TypeServiceInter;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -23,7 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PokemonController {
 
-    private final PokemonServiceV2 pokemonService;
+    private final PokeService pokemonService;
     private final TypeServiceInter typeService;
 
     @GetMapping("/pokemons")
@@ -67,7 +70,7 @@ public class PokemonController {
         }
 
         try {
-            pokemonService.save(addPokemon);
+//            pokemonService.save(addPokemon);
         } catch (Exception e) {
             log.info("error = {}", e);
         }
@@ -81,15 +84,16 @@ public class PokemonController {
 
     @PostMapping("/admin/pokemons/add")
     public String addPokemonV2(@Validated @ModelAttribute Pokemon pokemon,
+                             MultipartHttpServletRequest mtfRequest,
                              BindingResult bindingResult,
-                             RedirectAttributes redirect) {
+                             RedirectAttributes redirect) throws IOException {
 
         if (bindingResult.hasErrors()) {
             log.info("error = {}", bindingResult);
             return "addForm";
         }
 
-        pokemonService.save(pokemon);
+        pokemonService.save(mtfRequest, pokemon);
 
 
         redirect.addAttribute("idPokemon", pokemon.getIdPokemon());

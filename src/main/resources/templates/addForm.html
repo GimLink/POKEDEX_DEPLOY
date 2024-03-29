@@ -22,7 +22,7 @@
         <h2>포켓몬 등록 폼</h2>
     </div>
 
-    <form action="pokemon.html" th:action th:object="${pokemon}" method="post">
+    <form action="pokemon.html" th:action th:object="${pokemon}" method="post" enctype="multipart/form-data">
 
 <!--        <div th:if="${#fields.hasGlobalErrors()}">-->
 <!--            <p class="field-error", th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>-->
@@ -109,6 +109,18 @@
             <input type="checkbox" th:field="*{types}" name="typeIds" value="17"> 강철
 <!--            </select>-->
         </div>
+        <div>
+            <label>포켓몬 이미지</label>
+            <span>
+                <div class="imgupload">
+                    <label for="upload_image">
+                        이미지 찾기
+                    </label>
+                    <input type="file" name="upload_image" id = "upload_image" multiple="multiple">
+                </div>
+            </span>
+        </div>
+
 
         <hr class="my-4">
 

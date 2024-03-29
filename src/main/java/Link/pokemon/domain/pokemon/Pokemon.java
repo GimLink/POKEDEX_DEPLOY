@@ -17,23 +17,23 @@ public class Pokemon {
     @Range(min = 0, max = 1000)
     private Long idPokemon;
 
-    @NotBlank
+    @NotBlank(message = "이름을 입력해주세요.")
     private String pokemonName;
 
-    @NotNull
+    @NotNull(message = "체력을 입력해주세요.")
     private Integer hp;
-    @NotNull
+    @NotNull(message = "공격력을 입력해주세요.")
     private Integer attack;
-    @NotNull
+    @NotNull(message = "방어력을 입력해주세요.")
     private Integer defense;
-    @NotNull
+    @NotNull(message = "특수공격력을 입력해주세요.")
     private Integer specialAttack;
-    @NotNull
+    @NotNull(message = "특수방어력을 입력해주세요.")
     private Integer specialDefense;
-    @NotNull
+    @NotNull(message = "속도를 입력해주세요.")
     private Integer speed;
 
-    private String imageUrl;
+    private String PokemonImageUrl;
 
     @ManyToMany
     @JoinTable(
