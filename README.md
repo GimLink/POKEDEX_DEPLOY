@@ -91,7 +91,7 @@
         <li>
             <strong>로그인</strong>
             <ul>
-                <li>카카오 로그인 구현</li>
+                <li>Spring Security 로그인 구현</li>
                 <li>유효성 검사</li>
                 <li>30분동안 활동 없을 경우 자동 로그아웃</li>
                 <li>
