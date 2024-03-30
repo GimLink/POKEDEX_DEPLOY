@@ -123,6 +123,9 @@
                 <li>포켓몬 도감 번호, 이름 클릭시 해당 포켓몬 상세페이지 이동</li>
                 <li>타입 클릭시 해당 타입 포켓몬 목록 페이지 이동</li>
                 <li>
+                    <img width="1470" alt="스크린샷 2024-03-28 20 26 46" src="https://github.com/GimLink/POKEDEX_DEPLOY/assets/88365662/74dabc27-5936-4a0c-9884-cb35a52e0066">
+                </li>
+                <li>
                     <img width="1470" alt="스크린샷 2024-03-28 20 28 05" src="https://github.com/GimLink/POKEDEX_DEPLOY/assets/88365662/a7b7c8ce-8e7a-48ff-bffc-7b32f23a2c5b">
                 </li>
             </ul>
