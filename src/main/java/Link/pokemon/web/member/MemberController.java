@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("members")
+@RequestMapping("/members")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -25,7 +25,7 @@ public class MemberController {
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute(name="member") Member member) {
-        return "/members/addMemberForm";
+        return "members/addMemberForm";
     }
 
     @PostMapping("/add")
