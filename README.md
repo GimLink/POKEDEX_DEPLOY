@@ -1,4 +1,3 @@
-<img width="1104" alt="스크린샷 2024-03-30 19 54 05" src="https://github.com/GimLink/POKEDEX_DEPLOY/assets/88365662/0da9c3f3-930d-4816-9ee9-b1d1c18a136c"><img width="1104" alt="스크린샷 2024-03-30 19 54 05" src="https://github.com/GimLink/POKEDEX_DEPLOY/assets/88365662/94c7d746-1b9a-449d-a04c-869ec278abc1"><img width="1104" alt="스크린샷 2024-03-30 19 29 33" src="https://github.com/GimLink/POKEDEX_DEPLOY/assets/88365662/b53fb4eb-da69-4fa8-a2cc-8326deddd743"><img width="1470" alt="스크린샷 2024-03-28 20 25 44" src="https://github.com/GimLink/POKEDEX_DEPLOY/assets/88365662/9eb539bf-259f-4371-8f9a-29b62420e764">
 <p>포켓몬 도감을 제작하는 개인 프로젝트입니다.</p>
 <p> css 출처(하이버) </p>
 <h1>배포환경</h1>
