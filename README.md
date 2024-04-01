@@ -1,4 +1,6 @@
 <p>포켓몬 도감을 제작하는 개인 프로젝트입니다.</p>
+<a href = "https://port-0-pokedex-deploy-2aat2cluciqnq1.sel5.cloudtype.app/">포켓몬 도감</a>
+<p>클라우드 타입 무료티어 사용으로 인해 서버가 내려가있을 수 있습니다</p>
 <h1>배포환경</h1>
 <div>
     <ul>
